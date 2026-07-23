@@ -1,0 +1,22 @@
+﻿*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%;height:100%;}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  background-color:#060d0f;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 15% -5%,rgba(16,185,129,0.1) 0%,transparent 55%),
+    radial-gradient(ellipse 70% 50% at 85% 105%,rgba(6,182,212,0.09) 0%,transparent 55%);
+  background-attachment:fixed;
+  color:rgba(255,255,255,0.85);min-height:100%;line-height:1.5;overflow-x:hidden;
+}
+#root{min-height:100vh;}
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:rgba(16,185,129,0.2);border-radius:99px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(16,185,129,0.45);}
+::selection{background:rgba(16,185,129,0.3);color:#fff;}
+:focus-visible{outline:2px solid rgba(16,185,129,0.5);outline-offset:3px;border-radius:6px;}
+:focus:not(:focus-visible){outline:none;}
+button,input,textarea,select{font-family:inherit;font-size:inherit;}
+button{border:none;background:none;cursor:pointer;}
