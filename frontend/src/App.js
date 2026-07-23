@@ -3,7 +3,7 @@ import "./App.css";
 
 const API = "http://127.0.0.1:5000";
 
-// ΓöÇΓöÇ Neural Canvas Background ΓöÇΓöÇ
+// -- Neural Canvas Background --
 function NeuralCanvas() {
   const canvasRef = useRef(null);
   useEffect(() => {
@@ -42,23 +42,23 @@ function NeuralCanvas() {
   return <canvas ref={canvasRef} className="neural-canvas"/>;
 }
 
-// ΓöÇΓöÇ Urgency Config ΓöÇΓöÇ
+// -- Urgency Config --
 const URGENCY = {
-  critical: { label:"CRITICAL",  color:"#ef4444", bg:"rgba(239,68,68,0.1)",   border:"rgba(239,68,68,0.3)",   icon:"≡ƒÜ¿" },
-  high:     { label:"HIGH",      color:"#f97316", bg:"rgba(249,115,22,0.1)",  border:"rgba(249,115,22,0.3)",  icon:"ΓÜá∩╕Å" },
-  medium:   { label:"MEDIUM",    color:"#f59e0b", bg:"rgba(245,158,11,0.1)",  border:"rgba(245,158,11,0.3)",  icon:"≡ƒôï" },
-  low:      { label:"LOW",       color:"#10b981", bg:"rgba(16,185,129,0.1)",  border:"rgba(16,185,129,0.3)",  icon:"≡ƒÆè" },
+  critical: { label:"CRITICAL",  color:"#ef4444", bg:"rgba(239,68,68,0.1)",   border:"rgba(239,68,68,0.3)",   icon:"🚨" },
+  high:     { label:"HIGH",      color:"#f97316", bg:"rgba(249,115,22,0.1)",  border:"rgba(249,115,22,0.3)",  icon:"⚠️" },
+  medium:   { label:"MEDIUM",    color:"#f59e0b", bg:"rgba(245,158,11,0.1)",  border:"rgba(245,158,11,0.3)",  icon:"📋" },
+  low:      { label:"LOW",       color:"#10b981", bg:"rgba(16,185,129,0.1)",  border:"rgba(16,185,129,0.3)",  icon:"✅" },
 };
 
 const VITAL_STATUS = {
-  critical: { color:"#ef4444", icon:"≡ƒö┤" },
-  high:     { color:"#f97316", icon:"≡ƒƒá" },
-  elevated: { color:"#f59e0b", icon:"≡ƒƒí" },
-  low:      { color:"#3b82f6", icon:"≡ƒö╡" },
-  normal:   { color:"#10b981", icon:"≡ƒƒó" },
+  critical: { color:"#ef4444", icon:"🔴" },
+  high:     { color:"#f97316", icon:"🟠" },
+  elevated: { color:"#f59e0b", icon:"🟡" },
+  low:      { color:"#3b82f6", icon:"🔵" },
+  normal:   { color:"#10b981", icon:"🟢" },
 };
 
-// ΓöÇΓöÇ Animated Score Ring ΓöÇΓöÇ
+// -- Animated Score Ring --
 function ScoreRing({ value, label, color, size=80 }) {
   const r = (size-10)/2, circ = 2*Math.PI*r;
   const dash = circ - (value/100)*circ;
@@ -79,7 +79,7 @@ function ScoreRing({ value, label, color, size=80 }) {
   );
 }
 
-// ΓöÇΓöÇ Typewriter ΓöÇΓöÇ
+// -- Typewriter --
 function useTypewriter(text, speed=18) {
   const [out, setOut] = useState("");
   useEffect(()=>{
@@ -91,7 +91,7 @@ function useTypewriter(text, speed=18) {
   return out;
 }
 
-// ΓöÇΓöÇ Tab Bar ΓöÇΓöÇ
+// -- Tab Bar --
 function TabBar({ tabs, active, onChange }) {
   return (
     <div className="tab-bar">
@@ -104,14 +104,14 @@ function TabBar({ tabs, active, onChange }) {
   );
 }
 
-// ΓöÇΓöÇ Vitals Panel ΓöÇΓöÇ
+// -- Vitals Panel --
 function VitalsPanel({ vitals, setVitals }) {
   const fields = [
-    { key:"blood_pressure",    label:"Blood Pressure",   placeholder:"120/80",  unit:"mmHg", icon:"≡ƒ½Ç" },
-    { key:"heart_rate",        label:"Heart Rate",        placeholder:"72",      unit:"bpm",  icon:"≡ƒÆô" },
-    { key:"temperature",       label:"Temperature",       placeholder:"37.0",    unit:"┬░C",   icon:"≡ƒîí∩╕Å" },
-    { key:"oxygen_saturation", label:"SpOΓéé",              placeholder:"98",      unit:"%",    icon:"≡ƒ½ü" },
-    { key:"blood_sugar",       label:"Blood Sugar",       placeholder:"90",      unit:"mg/dL",icon:"≡ƒ⌐╕" },
+    { key:"blood_pressure",    label:"Blood Pressure",   placeholder:"120/80",  unit:"mmHg", icon:"💉" },
+    { key:"heart_rate",        label:"Heart Rate",        placeholder:"72",      unit:"bpm",  icon:"❤️" },
+    { key:"temperature",       label:"Temperature",       placeholder:"37.0",    unit:"°C",   icon:"🌡️" },
+    { key:"oxygen_saturation", label:"SpO₂",              placeholder:"98",      unit:"%",    icon:"💨" },
+    { key:"blood_sugar",       label:"Blood Sugar",       placeholder:"90",      unit:"mg/dL",icon:"🩸" },
   ];
   return (
     <div className="vitals-grid">
@@ -129,7 +129,7 @@ function VitalsPanel({ vitals, setVitals }) {
   );
 }
 
-// ΓöÇΓöÇ Vitals Result ΓöÇΓöÇ
+// -- Vitals Result --
 function VitalsResult({ items }) {
   if(!items||!items.length) return null;
   return (
@@ -151,23 +151,23 @@ function VitalsResult({ items }) {
   );
 }
 
-// ΓöÇΓöÇ Diagnosis Result Panel ΓöÇΓöÇ
+// -- Diagnosis Result Panel --
 function DiagnosisResult({ result, onReset }) {
   const [copied, setCopied] = useState(false);
   const urg = URGENCY[result.diagnosis.overall_urgency] || URGENCY.low;
-  const symText = result.analysis.symptoms_recognized.join(", ") || "ΓÇö";
+  const symText = result.analysis.symptoms_recognized.join(", ") || "—";
 
   const copyReport = () => {
     const lines = [
-      `MediScope+ Report ΓÇö ${result.timestamp}`,
+      `MediScope+ Report — ${result.timestamp}`,
       `Patient: ${result.patient.name}, Age: ${result.patient.age||"N/A"}, Gender: ${result.patient.gender}`,
       `Urgency: ${result.diagnosis.overall_urgency.toUpperCase()}`,
       `Action: ${result.diagnosis.urgency_action}`,
       `Symptoms: ${symText}`,
       `Conditions: ${result.diagnosis.possible_conditions.map(c=>c.condition).join(", ")}`,
       `Systems: ${result.analysis.affected_systems.join(", ")}`,
-      `Recommendations:\n${result.diagnosis.general_recommendations.map(r=>"ΓÇó "+r).join("\n")}`,
-      `\nΓÜá AI-generated. Not a substitute for medical advice.`,
+      `Recommendations:\n${result.diagnosis.general_recommendations.map(r=>"• "+r).join("\n")}`,
+      `\n⚠️ AI-generated. Not a substitute for medical advice.`,
     ];
     navigator.clipboard.writeText(lines.join("\n")).then(()=>{ setCopied(true); setTimeout(()=>setCopied(false),2000); });
   };
@@ -184,29 +184,29 @@ function DiagnosisResult({ result, onReset }) {
           </div>
         </div>
         <div className="urgency-actions">
-          <button className="icon-btn" onClick={copyReport} title="Copy Report">{copied?"Γ£ô":"≡ƒôï"}</button>
-          <button className="icon-btn" onClick={onReset} title="New Patient">Γå║</button>
+          <button className="icon-btn" onClick={copyReport} title="Copy Report">{copied?"✔":"📋"}</button>
+          <button className="icon-btn" onClick={onReset} title="New Patient">↩</button>
         </div>
       </div>
 
       {/* Patient + Recognition */}
       <div className="result-meta-row">
         <div className="meta-box">
-          <span className="meta-icon">≡ƒæñ</span>
+          <span className="meta-icon">👤</span>
           <div>
             <p className="meta-title">{result.patient.name}</p>
-            <p className="meta-sub">{result.patient.age ? `${result.patient.age} yrs` : "Age N/A"} ┬╖ {result.patient.gender}</p>
+            <p className="meta-sub">{result.patient.age ? `${result.patient.age} yrs` : "Age N/A"} · {result.patient.gender}</p>
           </div>
         </div>
         <div className="meta-box">
-          <span className="meta-icon">≡ƒö¼</span>
+          <span className="meta-icon">🔍</span>
           <div>
             <p className="meta-title">{result.analysis.symptom_count} Symptoms</p>
             <p className="meta-sub">{result.analysis.recognition_rate}% recognized</p>
           </div>
         </div>
         <div className="meta-box">
-          <span className="meta-icon">≡ƒÅÑ</span>
+          <span className="meta-icon">🏥</span>
           <div>
             <p className="meta-title">{result.analysis.affected_systems.length} System(s)</p>
             <p className="meta-sub">{result.analysis.affected_systems.slice(0,2).join(", ")}</p>
@@ -217,12 +217,12 @@ function DiagnosisResult({ result, onReset }) {
   );
 }
 
-// ΓöÇΓöÇ Conditions List ΓöÇΓöÇ
+// -- Conditions List --
 function ConditionsList({ conditions }) {
   const max = conditions[0]?.mentions || 1;
   return (
     <div className="conditions-list">
-      <h3 className="section-heading"><span>≡ƒ⌐║</span> Possible Conditions</h3>
+      <h3 className="section-heading"><span>🩺</span> Possible Conditions</h3>
       {conditions.map((c,i)=>(
         <div key={i} className="condition-row">
           <div className="cond-rank">#{i+1}</div>
@@ -239,12 +239,12 @@ function ConditionsList({ conditions }) {
   );
 }
 
-// ΓöÇΓöÇ Symptoms Tags ΓöÇΓöÇ
+// -- Symptoms Tags --
 function SymptomTags({ recognized, entered }) {
   const enteredParts = entered.split(/[,;\n]/).map(s=>s.trim().toLowerCase()).filter(Boolean);
   return (
     <div className="symptoms-section">
-      <h3 className="section-heading"><span>≡ƒöì</span> Symptom Recognition</h3>
+      <h3 className="section-heading"><span>🔬</span> Symptom Recognition</h3>
       <div className="symptom-tags">
         {enteredParts.map((s,i)=>{
           const matched = recognized.some(r=>s.includes(r)||r.includes(s));
@@ -252,32 +252,32 @@ function SymptomTags({ recognized, entered }) {
         })}
       </div>
       {recognized.length > 0 && (
-        <p className="sym-note">Γ£ô Matched: {recognized.join(" ┬╖ ")}</p>
+        <p className="sym-note">✔ Matched: {recognized.join(" · ")}</p>
       )}
     </div>
   );
 }
 
-// ΓöÇΓöÇ Recommendations ΓöÇΓöÇ
+// -- Recommendations --
 function Recommendations({ general, vital }) {
   const all = [...general, ...(vital||[])];
   return (
     <div className="recs-section">
-      <h3 className="section-heading"><span>≡ƒÆí</span> Recommendations</h3>
+      <h3 className="section-heading"><span>💊</span> Recommendations</h3>
       <ul className="recs-list">
         {all.map((r,i)=>(
-          <li key={i} className="rec-item"><span className="rec-bullet">ΓåÆ</span>{r}</li>
+          <li key={i} className="rec-item"><span className="rec-bullet">→</span>{r}</li>
         ))}
       </ul>
     </div>
   );
 }
 
-// ΓöÇΓöÇ History Panel ΓöÇΓöÇ
+// -- History Panel --
 function HistoryPanel({ records, onClear }) {
   if (!records.length) return (
     <div className="empty-state">
-      <span className="empty-icon">≡ƒôé</span>
+      <span className="empty-icon">📂</span>
       <p>No patient records yet</p>
     </div>
   );
@@ -295,14 +295,14 @@ function HistoryPanel({ records, onClear }) {
               <span className="hc-id">#{r.id}</span>
               <div>
                 <p className="hc-name">{r.patient_name}</p>
-                <p className="hc-meta">{r.age ? `${r.age}y` : "ΓÇö"} ┬╖ {r.gender} ┬╖ {r.timestamp.split(" ")[1]}</p>
+                <p className="hc-meta">{r.age ? `${r.age}y` : "—"} · {r.gender} · {r.timestamp.split(" ")[1]}</p>
               </div>
             </div>
             <div className="hc-right">
               <span className="urgency-chip" style={{color:urg.color,borderColor:urg.border,background:urg.bg}}>
                 {urg.icon} {urg.label}
               </span>
-              <p className="hc-cond">{r.possible_conditions.slice(0,2).join(", ") || "ΓÇö"}</p>
+              <p className="hc-cond">{r.possible_conditions.slice(0,2).join(", ") || "—"}</p>
             </div>
           </div>
         );
@@ -311,20 +311,20 @@ function HistoryPanel({ records, onClear }) {
   );
 }
 
-// ΓöÇΓöÇ Stats Panel ΓöÇΓöÇ
+// -- Stats Panel --
 function StatsPanel({ stats }) {
   if(!stats||stats.total_patients===0) return (
-    <div className="empty-state"><span className="empty-icon">≡ƒôè</span><p>No data yet</p></div>
+    <div className="empty-state"><span className="empty-icon">📊</span><p>No data yet</p></div>
   );
   const urgColors = { critical:"#ef4444", high:"#f97316", medium:"#f59e0b", low:"#10b981" };
   return (
     <div className="stats-panel">
       <div className="stats-grid-top">
         {[
-          {label:"Total Patients",  val:stats.total_patients,    icon:"≡ƒæÑ"},
-          {label:"Avg Age",         val:stats.average_age||"N/A",icon:"≡ƒÄé"},
-          {label:"Top Condition",   val:stats.top_conditions?.[0]?.condition||"ΓÇö", icon:"≡ƒ⌐║"},
-          {label:"Dominant Urgency",val:stats.urgency_distribution ? Object.entries(stats.urgency_distribution).sort((a,b)=>b[1]-a[1])[0]?.[0]:"ΓÇö", icon:"ΓÜí"},
+          {label:"Total Patients",  val:stats.total_patients,    icon:"👥"},
+          {label:"Avg Age",         val:stats.average_age||"N/A",icon:"🎂"},
+          {label:"Top Condition",   val:stats.top_conditions?.[0]?.condition||"—", icon:"🩺"},
+          {label:"Dominant Urgency",val:stats.urgency_distribution ? Object.entries(stats.urgency_distribution).sort((a,b)=>b[1]-a[1])[0]?.[0]:"—", icon:"⚡"},
         ].map((s,i)=>(
           <div key={i} className="stat-card">
             <span className="stat-icon">{s.icon}</span>
@@ -351,9 +351,9 @@ function StatsPanel({ stats }) {
   );
 }
 
-// ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+// =============================================
 //   MAIN APP
-// ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+// =============================================
 export default function App() {
   const [tab, setTab]           = useState("diagnose");
   const [form, setForm]         = useState({ patient_name:"", age:"", gender:"", notes:"" });
@@ -366,9 +366,9 @@ export default function App() {
   const [statsData, setStats]   = useState(null);
 
   const TABS = [
-    { id:"diagnose", label:"Diagnose",   icon:"≡ƒ⌐║" },
-    { id:"history",  label:"History",    icon:"≡ƒôï" },
-    { id:"stats",    label:"Statistics", icon:"≡ƒôè" },
+    { id:"diagnose", label:"Diagnose",   icon:"🩺" },
+    { id:"history",  label:"History",    icon:"📋" },
+    { id:"stats",    label:"Statistics", icon:"📊" },
   ];
 
   const loadHistory = useCallback(async () => {
@@ -426,10 +426,10 @@ export default function App() {
       <div className="blob blob-1"/><div className="blob blob-2"/><div className="blob blob-3"/>
 
       <div className="app-root">
-        {/* ΓöÇΓöÇ HEADER ΓöÇΓöÇ */}
+        {/* HEADER */}
         <header className="app-header">
           <div className="header-brand">
-            <div className="brand-icon">ΓÜò</div>
+            <div className="brand-icon">⚕</div>
             <div>
               <h1 className="app-title">Medi<span className="accent">Scope</span><span className="plus">+</span></h1>
               <p className="app-subtitle">AI-Powered Medical Analysis System</p>
@@ -453,17 +453,17 @@ export default function App() {
           </div>
         </header>
 
-        {/* ΓöÇΓöÇ TABS ΓöÇΓöÇ */}
+        {/* TABS */}
         <TabBar tabs={TABS} active={tab} onChange={setTab}/>
 
-        {/* ΓöÇΓöÇ MAIN CARD ΓöÇΓöÇ */}
+        {/* MAIN CARD */}
         <div className="glass-card">
-          {/* ΓòÉΓòÉΓòÉΓòÉ DIAGNOSE TAB ΓòÉΓòÉΓòÉΓòÉ */}
+          {/* DIAGNOSE TAB */}
           {tab==="diagnose" && !result && (
             <div className="diagnose-form">
               {/* Patient Info */}
               <div className="form-section">
-                <h2 className="form-section-title"><span>≡ƒæñ</span> Patient Information</h2>
+                <h2 className="form-section-title"><span>👤</span> Patient Information</h2>
                 <div className="patient-grid">
                   <div className="field-group">
                     <label className="field-label">PATIENT NAME</label>
@@ -489,7 +489,7 @@ export default function App() {
 
               {/* Symptoms */}
               <div className="form-section">
-                <h2 className="form-section-title"><span>≡ƒöì</span> Symptoms</h2>
+                <h2 className="form-section-title"><span>🔬</span> Symptoms</h2>
                 <div className="field-group">
                   <div className="field-top-row">
                     <label className="field-label">DESCRIBE SYMPTOMS</label>
@@ -509,13 +509,13 @@ export default function App() {
 
               {/* Vitals */}
               <div className="form-section">
-                <h2 className="form-section-title"><span>≡ƒôè</span> Vital Signs <span className="optional-tag">Optional</span></h2>
+                <h2 className="form-section-title"><span>📊</span> Vital Signs <span className="optional-tag">Optional</span></h2>
                 <VitalsPanel vitals={vitals} setVitals={setVitals}/>
               </div>
 
               {/* Notes */}
               <div className="form-section">
-                <h2 className="form-section-title"><span>≡ƒô¥</span> Clinical Notes <span className="optional-tag">Optional</span></h2>
+                <h2 className="form-section-title"><span>📝</span> Clinical Notes <span className="optional-tag">Optional</span></h2>
                 <textarea className="neuro-textarea" rows={2}
                   placeholder="Any additional notes, medical history, current medications..."
                   value={form.notes} onChange={e=>setForm(f=>({...f,notes:e.target.value}))}/>
@@ -524,7 +524,7 @@ export default function App() {
               {/* Error */}
               {error && (
                 <div className="error-card">
-                  <span>ΓÜá</span>
+                  <span>⚠️</span>
                   <div><p className="error-title">Error</p><p className="error-msg">{error}</p></div>
                 </div>
               )}
@@ -533,15 +533,15 @@ export default function App() {
               <button className="submit-btn" onClick={handleDiagnose} disabled={!canSubmit}>
                 <span className="btn-shine"/>
                 <span className="btn-content">
-                  {loading ? <><span className="spinner"/>Analyzing Patient Data...</> : <><span>ΓÜí</span> Run Medical Analysis</>}
+                  {loading ? <><span className="spinner"/>Analyzing Patient Data...</> : <><span>⚡</span> Run Medical Analysis</>}
                 </span>
               </button>
 
-              <p className="disclaimer">ΓÜá AI-generated results for educational purposes only. Not a substitute for professional medical advice.</p>
+              <p className="disclaimer">⚠️ AI-generated results for educational purposes only. Not a substitute for professional medical advice.</p>
             </div>
           )}
 
-          {/* ΓòÉΓòÉΓòÉΓòÉ RESULT ΓòÉΓòÉΓòÉΓòÉ */}
+          {/* RESULT */}
           {tab==="diagnose" && result && (
             <div className="result-view">
               <DiagnosisResult result={result} onReset={handleReset}/>
@@ -549,24 +549,24 @@ export default function App() {
               <ConditionsList conditions={result.diagnosis.possible_conditions}/>
               <SymptomTags recognized={result.analysis.symptoms_recognized} entered={result.analysis.symptoms_entered}/>
               <Recommendations general={result.diagnosis.general_recommendations} vital={result.diagnosis.vital_recommendations}/>
-              {result.notes && <div className="notes-box"><span>≡ƒô¥</span> {result.notes}</div>}
+              {result.notes && <div className="notes-box"><span>📝</span> {result.notes}</div>}
               <button className="submit-btn secondary" onClick={handleReset}>
                 <span className="btn-content"><span>+</span> New Patient Analysis</span>
               </button>
             </div>
           )}
 
-          {/* ΓòÉΓòÉΓòÉΓòÉ HISTORY TAB ΓòÉΓòÉΓòÉΓòÉ */}
+          {/* HISTORY TAB */}
           {tab==="history" && <HistoryPanel records={history} onClear={handleClearHistory}/>}
 
-          {/* ΓòÉΓòÉΓòÉΓòÉ STATS TAB ΓòÉΓòÉΓòÉΓòÉ */}
+          {/* STATS TAB */}
           {tab==="stats" && <StatsPanel stats={statsData}/>}
         </div>
 
         <footer className="app-footer">
-          <span>MediScope+ ┬⌐ 2026</span><span className="footer-dot">┬╖</span>
-          <span>AI Medical Assistant</span><span className="footer-dot">┬╖</span>
-          <span>≡ƒöÆ Encrypted</span>
+          <span>MediScope+ © 2026</span><span className="footer-dot">·</span>
+          <span>AI Medical Assistant</span><span className="footer-dot">·</span>
+          <span>🔒 Encrypted</span>
         </footer>
       </div>
     </>
